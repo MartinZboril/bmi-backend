@@ -1,0 +1,40 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('body_mass_indices', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(
+                \App\Models\User::class,
+                'user_id'
+            )
+                ->constrained('users')
+                ->onDelete('cascade');            
+            $table->string('sex');
+            $table->integer('age');
+            $table->integer('height');
+            $table->integer('weight');
+            $table->integer('index');
+            $table->text('note')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('body_mass_indices');
+    }
+};

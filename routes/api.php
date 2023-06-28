@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\BodyMassIndexController;
 use App\Http\Controllers\V1\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +25,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('profile', [Auth\ProfileController::class, 'update']);
     Route::put('password-update', Auth\PasswordUpdateController::class);
     Route::post('auth/logout', Auth\LogoutController::class);
+    Route::apiResource('body-mass-index', BodyMassIndexController::class);
 });
